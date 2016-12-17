@@ -1,3 +1,31 @@
-<h1>
-  {{title}}
-</h1>
+<section [ngClass]="{'fade': scheduleAppointment}">
+  <p>
+    Hello, {{monthName}}
+  </p>
+  <div *ngFor="let day of days let i = index" [attr.data-index]="i" class="floating-box" [ngClass]="{'current': day === date.getDate()}" (click)="openMeetingForm(i+1)">
+    {{day}}
+    <template ngFor let-item [ngForOf]="appointments">
+      <div *ngIf="item.day === i+1">{{item.subject}} at {{item.time}}
+      <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteAppointment($event, item)"></button>
+      <hr>
+      </div>
+    </template>
+  </div>
+</section>
+
+<form [formGroup]="meetingForm" *ngIf="scheduleAppointment" (ngSubmit)="scheduleThisMeeting()">
+  <p><b>New Meeting</b></p>
+  <p>
+    <input formControlName="subject" type="text" placeholder="Enter meeting subject" required>
+  </p>
+  <p>
+    <select formControlName="timeRange" required>
+      <option value="">Please select a time</option>
+      <option *ngFor="let range of timeRanges">
+        {{range[0]}} - {{range[1]}}
+      </option>
+    </select>
+  </p>
+  <button type="submit" class="btn btn-primary">Set meeting!</button>
+  <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+</form>

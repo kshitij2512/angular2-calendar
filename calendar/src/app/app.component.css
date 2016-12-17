@@ -1,0 +1,38 @@
+/* Styles go here */
+
+.floating-box {
+    float: left;
+    width: 200px;
+    height: 75px;
+    margin: 5px;
+    border: 3px solid black;  
+    cursor: pointer;
+}
+
+.floating-box: hover {
+  background-color: lightgray;
+}
+
+.btn-danger {
+  font-size: 0.5em !important;
+}
+
+.current {
+  background-color: gray;
+}
+
+form {
+  width: auto;
+  height: auto;
+  top: 40%;
+  left: 40%;
+  z-index: 99;
+  position: absolute;
+  border: 2px solid black;
+  box-shadow: 3px 3px 3px #888888;
+  padding: 5px;
+}
+
+.fade {
+  opacity: 0.05;
+}
