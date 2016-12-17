@@ -1,15 +1,18 @@
 <section [ngClass]="{'fade': scheduleAppointment}">
-  <p>
+  <h3>
     Hello, {{monthName}}
-  </p>
-  <div *ngFor="let day of days let i = index" [attr.data-index]="i" class="floating-box" [ngClass]="{'current': day === date.getDate()}" (click)="openMeetingForm(i+1)">
-    {{day}}
-    <template ngFor let-item [ngForOf]="appointments">
-      <div *ngIf="item.day === i+1">{{item.subject}} at {{item.time}}
-      <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteAppointment($event, item)"></button>
-      <hr>
-      </div>
-    </template>
+  </h3>
+  <div class="container">
+    <div *ngFor="let day of days let i = index" [attr.data-index]="i" class="floating-box" [ngClass]="{'current': day === date.getDate()}"
+      (click)="openMeetingForm(i+1)">
+      {{day}}
+      <template ngFor let-item [ngForOf]="appointments">
+        <div *ngIf="item.day === i+1">{{item.subject}} at {{item.time}}
+          <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteAppointment($event, item)"></button>
+          <hr>
+        </div>
+      </template>
+    </div>
   </div>
 </section>
 
@@ -26,6 +29,8 @@
       </option>
     </select>
   </p>
-  <button type="submit" class="btn btn-primary">Set meeting!</button>
-  <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+  <div class="container">
+    <button type="submit" class="btn btn-primary">Set meeting!</button>
+    <button type="button" (click)="close()" class="btn btn-primary">Close</button>
+  </div>
 </form>
