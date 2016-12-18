@@ -19,13 +19,11 @@ export class ViewMeetingsComponent implements OnInit {
         if (!res) {
           return;
         }
-        console.log('res from CalendarService: ', res);
         if (res.meetings.length > 0 && res.index) {
           this.meetingForThisDay = [];
           for (let i = 0; i < res.meetings.length; i++) {
             if (res.meetings[i].day === res.index) {
               this.meetingForThisDay.push(res.meetings[i]);
-              console.log(this.meetingForThisDay);
             }
           }
         }

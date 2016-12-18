@@ -51,10 +51,8 @@ export class AppComponent implements OnInit {
   }
 
   openMeetingForm(index) {
-    console.log(index);
     this.scheduleAppointment = true;
     this.currentIndex = index;
-    console.log(this.currentIndex);
   }
 
   close() {
@@ -79,10 +77,8 @@ export class AppComponent implements OnInit {
   scheduleThisMeeting() {
     if (this.appointments && this.appointments.length > 0) {
       for (let i = 0; i < this.appointments.length; i++) {
-        console.log(this.appointments[i].day + ' ' + this.day.value);
         if (this.appointments[i].day === this.currentIndex && this.timeRange.value === this.appointments[i].time) {
           window.alert('this slot is already taken, please choose another one');
-          console.log('match found');
           return;
         }
       }
