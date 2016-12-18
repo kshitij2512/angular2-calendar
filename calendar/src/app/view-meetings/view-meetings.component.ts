@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CalendarService } from '../calendar.service';
 import { Subscription } from 'rxjs/Rx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-view-meetings',
@@ -12,7 +13,8 @@ export class ViewMeetingsComponent implements OnInit {
   private meetingForThisDay = [];
   private currentIndex;
 
-  constructor(private calendar: CalendarService) { }
+  constructor(private calendar: CalendarService,
+    private router: Router) { }
 
   ngOnInit() {
     this.meetingSub = this.calendar.meetings$.subscribe(
@@ -36,6 +38,10 @@ export class ViewMeetingsComponent implements OnInit {
   deleteAppointment(event, item: any) {
     event.stopPropagation();
     this.calendar.deleteMeeting(item, this.currentIndex);
+  }
+
+  goBack() {
+    this.router.navigate(['/']);
   }
 
 }

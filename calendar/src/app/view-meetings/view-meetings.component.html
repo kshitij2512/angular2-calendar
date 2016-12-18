@@ -1,8 +1,12 @@
-<div *ngFor="let item of meetingForThisDay" class="container">
-  <div>{{item.subject}} at {{item.time}}
-    <button type="button" class="btn btn-danger glyphicon glyphicon-remove"
-      (click)="deleteAppointment($event, item)"></button>
-    <hr>
+<div class="container">
+  <h3>Meetings for Today</h3>
+  <div *ngFor="let item of meetingForThisDay" class="margin-top-10">
+    <div>{{item.subject}} at {{item.time}}
+      <button type="button" class="btn btn-danger glyphicon glyphicon-remove"
+        (click)="deleteAppointment($event, item)"></button>
+      <hr>
+    </div>
   </div>
+  <p *ngIf="meetingForThisDay.length === 0" class="margin-top-10"><b>No meetings. Hurray!</b></p>
+  <a (click)="goBack()">< Back</a>
 </div>
-<p class="container" *ngIf="meetingForThisDay.length === 0">No meetings. Hurray!</p>
