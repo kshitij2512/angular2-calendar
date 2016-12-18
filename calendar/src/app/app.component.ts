@@ -59,16 +59,6 @@ export class AppComponent implements OnInit {
     this.scheduleAppointment = false;
   }
 
-  deleteAppointment(event, item: any) {
-    event.stopPropagation();
-    for (let i = 0; i < this.appointments.length; i++) {
-      if (JSON.stringify(item) === JSON.stringify(this.appointments[i])) {
-        this.appointments.splice(i, 1);
-      }
-    }
-    localStorage.setItem('appointments', JSON.stringify(this.appointments));
-  }
-
   viewMeeting(index) {
     this.calendar.viewMeetings(index);
     this.router.navigate(['/view-meeting']);

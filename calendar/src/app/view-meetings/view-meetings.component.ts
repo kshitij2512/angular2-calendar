@@ -10,6 +10,7 @@ import { Subscription } from 'rxjs/Rx';
 export class ViewMeetingsComponent implements OnInit {
   private meetingSub: Subscription;
   private meetingForThisDay = [];
+  private currentIndex;
 
   constructor(private calendar: CalendarService) { }
 
@@ -21,6 +22,7 @@ export class ViewMeetingsComponent implements OnInit {
         }
         if (res.meetings.length > 0 && res.index) {
           this.meetingForThisDay = [];
+          this.currentIndex = res.index;
           for (let i = 0; i < res.meetings.length; i++) {
             if (res.meetings[i].day === res.index) {
               this.meetingForThisDay.push(res.meetings[i]);
@@ -29,6 +31,11 @@ export class ViewMeetingsComponent implements OnInit {
         }
       }
     );
+  }
+
+  deleteAppointment(event, item: any) {
+    event.stopPropagation();
+    this.calendar.deleteMeeting(item, this.currentIndex);
   }
 
 }
