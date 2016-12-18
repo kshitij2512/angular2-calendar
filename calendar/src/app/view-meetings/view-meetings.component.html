@@ -1,5 +1,5 @@
-<div ngFor="let item of meetingForThisDay">
-  <div *ngIf="meetingForThisDay.length > 0 && item.day === index">{{item.subject}} at {{item.time}}
+<div *ngFor="let item of meetingForThisDay" class="container">
+  <div>{{item.subject}} at {{item.time}}
     <button type="button" class="btn btn-danger glyphicon glyphicon-remove"
       (click)="deleteAppointment($event, item)"></button>
     <hr>
