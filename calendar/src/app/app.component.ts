@@ -1,6 +1,8 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
+import { CalendarService } from './calendar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'my-app',
@@ -24,7 +26,10 @@ export class AppComponent implements OnInit {
   private meetingSubject: string;
   private meetingForm: FormGroup;
   private timeRange: AbstractControl;
-  constructor(private formBuilder: FormBuilder) {
+
+  constructor(private formBuilder: FormBuilder,
+    private calendar: CalendarService,
+    private router: Router) {
     this.date = new Date();
     this.monthName = this.monthNames[this.date.getMonth()];
     this.day = this.date.getDate();
@@ -64,6 +69,11 @@ export class AppComponent implements OnInit {
       }
     }
     localStorage.setItem('appointments', JSON.stringify(this.appointments));
+  }
+
+  viewMeeting(index) {
+    this.calendar.viewMeetings(index);
+    this.router.navigate(['/view-meeting']);
   }
 
   scheduleThisMeeting() {

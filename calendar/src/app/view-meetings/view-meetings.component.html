@@ -1,0 +1,7 @@
+<template ngFor let-item [ngForOf]="meetingForThisDay">
+  <div>{{item.subject}} at {{item.time}}
+    <button type="button" class="btn btn-danger glyphicon glyphicon-remove"
+      (click)="deleteAppointment($event, item)"></button>
+    <hr>
+  </div>
+</template>

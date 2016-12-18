@@ -3,15 +3,14 @@
     Hello, {{monthName}}
   </h3>
   <div class="container">
-    <div *ngFor="let day of days let i = index" [attr.data-index]="i" class="floating-box" [ngClass]="{'current': day === date.getDate()}"
-      (click)="openMeetingForm(i+1)">
+    <div *ngFor="let day of days let i = index" [attr.data-index]="i" class="floating-box" [ngClass]="{'current': day === date.getDate()}">
       {{day}}
-      <template ngFor let-item [ngForOf]="appointments">
-        <div *ngIf="item.day === i+1">{{item.subject}} at {{item.time}}
-          <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteAppointment($event, item)"></button>
-          <hr>
-        </div>
-      </template>
+      <p class="viewMeetings">
+        <a (click)="viewMeeting(i+1)">View meetings</a>
+      </p>
+      <p class="newMeeting">
+        <a (click)="openMeetingForm(i+1)">Set new appointment</a>
+      </p>
     </div>
   </div>
 </section>

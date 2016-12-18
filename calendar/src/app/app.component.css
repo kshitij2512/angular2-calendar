@@ -10,8 +10,21 @@
     cursor: pointer;
 }
 
+.floating-box > p {
+    visibility: hidden;
+}
+
+.container > div.container {
+    display: none;
+}
+
+.floating-box:hover > p {
+  text-align: center;
+  visibility: visible;
+}
+
 .floating-box:hover {
-  background-color: aliceblue!important;
+    background-color: lightgray!important;
 }
 
 .btn-danger {
