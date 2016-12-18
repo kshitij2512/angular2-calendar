@@ -21,8 +21,9 @@ export class ViewMeetingsComponent implements OnInit {
         }
         if (res.meetings && res.index) {
           for (let i = 1; i <= res.meetings.length; i++) {
-            if (i === res.index) {
+            if (res.meetings.day === res.index) {
               this.meetingForThisDay.push(res.meetings[i]);
+              console.log(this.meetingForThisDay);
             }
           }
         }

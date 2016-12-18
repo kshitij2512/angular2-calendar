@@ -6,10 +6,10 @@
     <div *ngFor="let day of days let i = index" [attr.data-index]="i" class="floating-box" [ngClass]="{'current': day === date.getDate()}">
       {{day}}
       <p class="viewMeetings">
-        <a (click)="viewMeeting(i+1)">View meetings</a>
+        <a (click)="viewMeeting(i+1)"><b>View meetings</b></a>
       </p>
       <p class="newMeeting">
-        <a (click)="openMeetingForm(i+1)">Set new appointment</a>
+        <a (click)="openMeetingForm(i+1)"><b>Set new appointment</b></a>
       </p>
     </div>
   </div>
