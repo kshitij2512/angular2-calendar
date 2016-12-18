@@ -8,11 +8,13 @@ import { RouterModule, Routes, Router } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { ViewMeetingsComponent } from './view-meetings/view-meetings.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ViewMeetingsComponent
+    ViewMeetingsComponent,
+    CalendarComponent
   ],
   imports: [
     AppRoutingModule,
