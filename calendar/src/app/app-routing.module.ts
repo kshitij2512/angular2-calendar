@@ -3,17 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { ViewMeetingsComponent } from './view-meetings/view-meetings.component';
 
-const appRoutes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-    children: [
-      {
+const appRoutes: Routes = [ 
+    {
         path: 'view-meeting',
         component: ViewMeetingsComponent
-      }
-    ]
-  }
+    }
 ];
 
 @NgModule({
