@@ -47,6 +47,10 @@ form {
   padding: 5px;
 }
 
+form > p {
+  box-sizing: border-box;
+}
+
 p > input, select {
     width: 100%;
 }

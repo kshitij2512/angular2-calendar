@@ -18,7 +18,7 @@ export class CalendarComponent implements OnInit {
   private monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  private timeRanges = [[9, 10], [10, 11], [11, 12], [12, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]];
+  private timeRanges;
   private scheduleAppointment;
   private days = [];
   private subject: AbstractControl;
@@ -39,6 +39,7 @@ export class CalendarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.timeRanges = this.calendar.getTimeRanges();
     this.meetingForm = this.formBuilder.group({
       subject: '',
       timeRange: ''

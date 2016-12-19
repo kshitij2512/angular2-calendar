@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable } from 'rxjs/Rx';
 @Injectable()
 export class CalendarService {
     private appointments = [];
+    private timeRanges = [[9, 10], [10, 11], [11, 12], [12, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 6]];
     private _meetings$: BehaviorSubject<any> = new BehaviorSubject(null);
 
     constructor() { }
@@ -33,5 +34,13 @@ export class CalendarService {
             index: index
         });
         localStorage.setItem('appointments', JSON.stringify(this.appointments));
+    }
+
+    editMeeting(item: Object, index: any) {
+
+    }
+
+    getTimeRanges() {
+        return this.timeRanges;
     }
 } 

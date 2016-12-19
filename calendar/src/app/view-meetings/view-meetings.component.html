@@ -1,12 +1,30 @@
 <div class="container">
   <h3>Meetings for Today</h3>
-  <div *ngFor="let item of meetingForThisDay" class="margin-top-10">
-    <div>{{item.subject}} at {{item.time}}
-      <button type="button" class="btn btn-danger glyphicon glyphicon-remove"
-        (click)="deleteAppointment($event, item)"></button>
+  <div *ngFor="let item of meetingForThisDay let i = index" [attr.data-index]="i" class="margin-top-10">
+    <form [formGroup]="editForm" *ngIf="editMode && i === currentlyBeingEdited" (ngSubmit)="editThisMeeting()">
+      <p><b>Edit Meeting</b></p>
+      <p>
+        <input formControlName="newSubject" type="text" placeholder="Enter new meeting subject" required>
+      </p>
+      <p>
+        <select formControlName="newTime" required>
+      <option value="">Please select a time</option>
+      <option *ngFor="let range of timeRanges">
+        {{range[0]}} - {{range[1]}}
+      </option>
+    </select>
+      </p>
+      <div class="container">
+        <button type="submit" class="btn btn-primary glyphicon glyphicon-ok-sign"></button>
+        <button type="button" (click)="editModeOff()" class="btn btn-primary glyphicon glyphicon-remove-circle"></button>
+      </div>
+    </form>
+    <div *ngIf="i !== currentlyBeingEdited"><b>{{item.subject}} at {{item.time}}</b>
+      <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteAppointment($event, item)"></button>
+      <button type="button" class="btn btn-primary glyphicon glyphicon-edit" (click)="editModeOn($event, item, i)"></button>
       <hr>
     </div>
   </div>
   <p *ngIf="meetingForThisDay.length === 0" class="margin-top-10"><b>No meetings. Hurray!</b></p>
-  <a (click)="goBack()">< Back</a>
+  <a (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back</a>
 </div>
