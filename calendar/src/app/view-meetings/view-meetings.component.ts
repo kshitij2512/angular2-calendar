@@ -19,6 +19,7 @@ export class ViewMeetingsComponent implements OnInit {
   private newTime: AbstractControl;
   private timeRanges;
   private currentlyBeingEdited;
+  private currentItemBeingEdited: Object;
 
   constructor(private calendar: CalendarService,
     private router: Router,
@@ -51,6 +52,7 @@ export class ViewMeetingsComponent implements OnInit {
 
   editModeOn(event, item: any, index: any) {
     this.currentlyBeingEdited = index;
+    this.currentItemBeingEdited = item;
     console.log('currentlyBeingEdited: ', index);
     event.stopPropagation();
     this.editMode = true;
@@ -65,15 +67,17 @@ export class ViewMeetingsComponent implements OnInit {
   editModeOff() {
     this.editMode = false;
     this.currentlyBeingEdited = null;
+    this.currentItemBeingEdited = null;
   }
 
   editThisMeeting() {
-    let item: Object = {
+    let newItem: Object = {
       day: this.currentIndex,
       subject: this.newSubject.value,
       time: this.newTime.value
     }
-    this.calendar.editMeeting(item, this.currentIndex);
+    this.calendar.editMeeting(newItem, this.currentItemBeingEdited, this.currentIndex);
+    this.editModeOff();
   }
 
   goBack() {

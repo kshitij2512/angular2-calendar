@@ -36,8 +36,26 @@ export class CalendarService {
         localStorage.setItem('appointments', JSON.stringify(this.appointments));
     }
 
-    editMeeting(item: Object, index: any) {
-
+    editMeeting(newItem: Object, oldItem: Object, index: any) {
+        if (this.appointments && this.appointments.length > 0 && newItem['time'] !== oldItem['time']) {
+            for (let i = 0; i < this.appointments.length; i++) {
+                if (this.appointments[i].day === index && newItem['time'] === this.appointments[i].time) {
+                    window.alert('this slot is already taken, please choose another one');
+                    return;
+                }
+            }
+        }
+        for (let i = 0; i < this.appointments.length; i++) {
+            if (JSON.stringify(oldItem) === JSON.stringify(this.appointments[i])) {
+                this.appointments.splice(i, 1);
+            }
+        }
+        this.appointments.push(newItem);
+        localStorage.setItem('appointments', JSON.stringify(this.appointments));
+        this._meetings$.next({
+            meetings: this.appointments,
+            index: index
+        });
     }
 
     getTimeRanges() {

@@ -22,8 +22,8 @@
     <div *ngIf="i !== currentlyBeingEdited"><b>{{item.subject}} at {{item.time}}</b>
       <button type="button" class="btn btn-danger glyphicon glyphicon-remove" (click)="deleteAppointment($event, item)"></button>
       <button type="button" class="btn btn-primary glyphicon glyphicon-edit" (click)="editModeOn($event, item, i)"></button>
-      <hr>
     </div>
+    <hr>
   </div>
   <p *ngIf="meetingForThisDay.length === 0" class="margin-top-10"><b>No meetings. Hurray!</b></p>
   <a (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back</a>
