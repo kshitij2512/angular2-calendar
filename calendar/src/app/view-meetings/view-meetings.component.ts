@@ -53,7 +53,6 @@ export class ViewMeetingsComponent implements OnInit {
   editModeOn(event, item: any, index: any) {
     this.currentlyBeingEdited = index;
     this.currentItemBeingEdited = item;
-    console.log('currentlyBeingEdited: ', index);
     event.stopPropagation();
     this.editMode = true;
     this.editForm = this.formBuilder.group({
